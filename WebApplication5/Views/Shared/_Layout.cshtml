@@ -6,6 +6,10 @@
     <title>@ViewBag.Title - My Application</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        .logo-container {
+            padding: 15px 20px;
+            margin-bottom: 10px; /* Adjust spacing as needed */
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f8f9fa;
@@ -46,6 +50,9 @@
 </head>
 <body>
     <div class="sidebar">
+        <div class="logo-container">
+            <img src="~/lib/Vakıfbank_logo.svg.png" alt="My Application Logo" class="img-fluid">
+        </div>
         <a href="~/Dashboard" class="btn btn-primary">Dashboard</a>
         <a href="~/Transactions/Index" class="btn btn-primary">Transactions</a>
         <a href="~/Account/Index" class="btn btn-primary">Accounts</a>

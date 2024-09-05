@@ -1,8 +1,4 @@
-﻿@model WebApplication5.ViewModels.AccountsViewModel
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<style>
+﻿<style>
     .card {
         background-color: #fff;
         border-radius: 8px;
@@ -10,22 +6,59 @@
         padding: 20px;
         margin-bottom: 20px;
         transition: transform 0.2s ease-in-out;
-    }</style>
+    }
 
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
-<div class="main-content">
-    <div class="accounts">
-        <div class="card">
-            <h3>Account Details</h3>
-            <ul class="list-unstyled">
-                @foreach (var account in Model.Accounts)
-                {
-                    <li class="account-item">
-                        <span>@account.AccountNumber</span>
-                        <span>@account.Balance.ToString("C")</span>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
+        .card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+    .account-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .account-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+        .account-item:last-child {
+            border-bottom: none;
+        }
+
+    .account-number {
+        font-weight: 600;
+    }
+
+    .account-balance {
+        color: #333;
+    }
+
+        .account-balance::before {
+            content: "₺"; /* You can replace this with the appropriate currency symbol */
+            margin-right: 4px;
+        }
+</style>
+
+<div class="card">
+    <h3>Account Details</h3>
+    <ul class="account-list">
+        @foreach (var account in Model.Accounts)
+        {
+            <li class="account-item">
+                <span class="account-number">@account.AccountNumber</span>
+                <span class="account-balance">@account.Balance.ToString("N2")</span>
+            </li>
+        }
+    </ul>
 </div>

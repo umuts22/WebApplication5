@@ -32,10 +32,23 @@
         text-align: center;
     }
 
-    .last-transactions .d-flex {
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
+    .last-transactions {
+        margin-top: 20px;
     }
+
+        .last-transactions .d-flex {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+            .last-transactions .d-flex span {
+                flex: 1; /* Equal width for each column */
+                text-align: center; /* Center text in each column */
+            }
+
+                .last-transactions .d-flex span:last-child {
+                    text-align: right; /* Right-align for the amount column */
+                }
 
     .chart-container {
         width: 100%;
@@ -49,12 +62,13 @@
         border-bottom: 1px solid #eee;
     }
 </style>
+
 <div class="main-content">
     <div class="overview row">
         <div class="col-md-3">
             <div class="card">
                 <h3>Customer name</h3>
-                <p>@Model.Balance.ToString("C")</p>
+                <p>@Model.CustomerName</p>
             </div>
         </div>
         <div class="col-md-3">

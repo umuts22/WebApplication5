@@ -22,11 +22,13 @@ namespace WebApplication5.Controllers
             // Example customer ID, replace with actual logic to get current customer's ID
             int customerId = 2;
 
-            // Fetch the customer's name
             var customer = await _context.Customers
-                .Where(c => c.CustomerID == customerId)
-                .Select(c => c.CustomerName) // Assuming your Customers table has a CustomerName field
-                .FirstOrDefaultAsync();
+            .Where(c => c.CustomerID == customerId)
+            .Select(c => new
+            {
+                FullName = c.FirstName + " " + c.LastName // Combine first and last name
+            })
+            .FirstOrDefaultAsync();
 
 
             // Fetch total balance using the new stored procedure
@@ -52,6 +54,8 @@ namespace WebApplication5.Controllers
             {
                 TotalBalance = totalBalance,
                 TotalCredit = totalCredit,
+                TotalSaving = totalBalance - totalCredit,  // Example calculation
+                CustomerName = customer.FullName,  // Set the full name here
                 Transactions = transactions.Select(t => new TransactionViewModel
                 {
                     Description = t.Description,
