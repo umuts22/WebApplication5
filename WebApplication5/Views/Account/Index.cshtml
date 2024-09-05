@@ -1,0 +1,31 @@
+﻿@model WebApplication5.ViewModels.AccountsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.2s ease-in-out;
+    }</style>
+
+
+<div class="main-content">
+    <div class="accounts">
+        <div class="card">
+            <h3>Account Details</h3>
+            <ul class="list-unstyled">
+                @foreach (var account in Model.Accounts)
+                {
+                    <li class="account-item">
+                        <span>@account.AccountNumber</span>
+                        <span>@account.Balance.ToString("C")</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
