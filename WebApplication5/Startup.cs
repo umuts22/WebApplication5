@@ -64,6 +64,13 @@ namespace MusteriWebProject
                     pattern: "{controller=Transactions}/{action=Index}/{id?}");
             });
 
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Account}/{action=Index}/{id?}");
+            });
+
         }
 
     }

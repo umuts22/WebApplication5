@@ -113,5 +113,24 @@ namespace WebApplication5.Controllers
             return View(viewModel);
         }
 
+        // GET: Accounts/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Accounts/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CreateAccountViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _context.CreateAccountAsync(model.CustomerId, model.AccountNumber, model.Balance);
+                return RedirectToAction("Index", "Account"); // Redirect to the accounts list or any other appropriate action
+            }
+            return View(model);
+        }
+
     }
 }

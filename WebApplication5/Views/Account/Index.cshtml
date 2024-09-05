@@ -1,4 +1,9 @@
-﻿<style>
+﻿@model WebApplication5.ViewModels.AccountsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
     .card {
         background-color: #fff;
         border-radius: 8px;
@@ -8,16 +13,16 @@
         transition: transform 0.2s ease-in-out;
     }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
 
-        .card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
+    .card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
 
     .account-list {
         list-style: none;
@@ -32,9 +37,9 @@
         border-bottom: 1px solid #eee;
     }
 
-        .account-item:last-child {
-            border-bottom: none;
-        }
+    .account-item:last-child {
+        border-bottom: none;
+    }
 
     .account-number {
         font-weight: 600;
@@ -44,16 +49,19 @@
         color: #333;
     }
 
-        .account-balance::before {
-            content: "₺"; /* You can replace this with the appropriate currency symbol */
-            margin-right: 4px;
-        }
+    .account-balance::before {
+        content: "₺"; /* You can replace this with the appropriate currency symbol */
+        margin-right: 4px;
+    }
 </style>
 
 <div class="card">
     <h3>Account Details</h3>
     <ul class="account-list">
         @foreach (var account in Model.Accounts)
+
+    
+
         {
             <li class="account-item">
                 <span class="account-number">@account.AccountNumber</span>
@@ -61,4 +69,9 @@
             </li>
         }
     </ul>
+</div>
+<div class="main-content">
+    <div>
+        <a href="@Url.Action("Create", "Account")" class="btn btn-primary">Create New Account</a>
+    </div>
 </div>
