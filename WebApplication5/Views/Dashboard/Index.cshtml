@@ -104,6 +104,7 @@
                             <span>@transaction.Date</span>
                             <span>@transaction.Status</span>
                             <span>@transaction.Amount.ToString("C")</span>
+                              <a href="@Url.Action("Chargeback", "Transactions", new { transactionId = transaction.TransactionID })" class="btn btn-danger btn-sm">Chargeback</a>
                         </div>
                     </li>
                 }
@@ -141,16 +142,16 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            labels: @Html.Raw(Json.Serialize(Model.DebitCreditChartData.Labels)),
             datasets: [{
                 label: 'Debit',
-                data: [7560, 5420, 6840, 7410, 5920, 6240, 8390],
+                data: @Html.Raw(Json.Serialize(Model.DebitCreditChartData.DebitData)),
                 backgroundColor: '#FFA500',
                 borderColor: '#FFA500',
                 borderWidth: 1
             }, {
                 label: 'Credit',
-                data: [5420, 6820, 7840, 5410, 7920, 7240, 8390],
+                data: @Html.Raw(Json.Serialize(Model.DebitCreditChartData.CreditData)),
                 backgroundColor: '#4B0082',
                 borderColor: '#4B0082',
                 borderWidth: 1

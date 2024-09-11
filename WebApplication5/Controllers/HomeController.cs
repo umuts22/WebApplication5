@@ -15,16 +15,14 @@ namespace WebApplication5.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+       
+        public IActionResult Dashboard() {
 
-        public IActionResult Dashboard() { 
-
+            ViewBag.Title = "Dashboard";
             return View();
         }
 
@@ -33,5 +31,13 @@ namespace WebApplication5.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public ActionResult Landing()
+        {
+            ViewBag.Title = "Landing Page";
+            return View();
+        }
+
+
+
     }
 }

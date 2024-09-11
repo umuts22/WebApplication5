@@ -20,6 +20,7 @@ namespace WebApplication5.Controllers
             try
             {
                 await _context.DepositFundsAsync(accountId, amount, description, createdBy);
+                TempData["SuccessMessage"] = "Deposit completed successfully.";
                 return RedirectToAction("Success");
             }
             catch (System.Exception ex)
@@ -35,6 +36,7 @@ namespace WebApplication5.Controllers
             try
             {
                 await _context.WithdrawFundsAsync(accountId, amount, description, createdBy);
+                TempData["SuccessMessage"] = "Withdrawal completed successfully.";
                 return RedirectToAction("Success");
             }
             catch (System.Exception ex)
@@ -56,6 +58,7 @@ namespace WebApplication5.Controllers
             try
             {
                 await _context.TransferFundsAsync(fromAccountId, toAccountId, amount);
+                TempData["SuccessMessage"] = "Transfer completed successfully.";
                 return RedirectToAction("Success");
             }
             catch (System.Exception ex)
@@ -67,6 +70,7 @@ namespace WebApplication5.Controllers
 
         public IActionResult Success()
         {
+            ViewData["SuccessMessage"] = TempData["SuccessMessage"];
             return View();
         }
 
@@ -75,6 +79,7 @@ namespace WebApplication5.Controllers
             ViewData["ErrorMessage"] = TempData["ErrorMessage"];
             return View();
         }
+
 
         [HttpGet]
         public IActionResult Deposit()

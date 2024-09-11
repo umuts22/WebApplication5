@@ -55,7 +55,7 @@ namespace WebApplication5.DAL
         public async Task<IEnumerable<Transaction>> GetTransactionHistoryAsync(int accountId)
         {
             return await Transactions
-                .FromSqlRaw("EXEC dbo.GetTransactionHistory @p0", accountId)
+                .FromSqlRaw("EXEC dbo.GetTransactionHistoryCid @p0", accountId)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -68,13 +68,13 @@ namespace WebApplication5.DAL
                 accountId, amount, description, createdBy);
         }
 
+        // Transfer funds
         public async Task TransferFundsAsync(int fromAccountId, int toAccountId, decimal amount)
-{
-    await Database.ExecuteSqlRawAsync(
-        "EXEC dbo.TransferFunds @p0, @p1, @p2",
-        fromAccountId, toAccountId, amount);
-}
-
+        {
+            await Database.ExecuteSqlRawAsync(
+                "EXEC dbo.TransferFunds @p0, @p1, @p2",
+                fromAccountId, toAccountId, amount);
+        }
     }
 
 
