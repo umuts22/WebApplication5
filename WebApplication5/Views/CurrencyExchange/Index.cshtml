@@ -2,7 +2,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <style>
     .card {
         background-color: #fff;
@@ -13,21 +12,21 @@
         transition: transform 0.2s ease-in-out;
     }
 
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
-    .card h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-    }
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-    .card p, .card span {
-        font-size: 1rem;
-        color: #333;
-    }
+        .card p, .card span {
+            font-size: 1rem;
+            color: #333;
+        }
 
     .overview .card {
         text-align: center;
@@ -37,23 +36,24 @@
         margin-top: 20px;
     }
 
-    .last-transactions .d-flex {
-        border-bottom: 1px solid #eee;
-        padding: 10px 0;
-    }
+        .last-transactions .d-flex {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
 
-    .last-transactions .d-flex span {
-        flex: 1; /* Equal width for each column */
-        text-align: center; /* Center text in each column */
-    }
+            .last-transactions .d-flex span {
+                flex: 1; /* Equal width for each column */
+                text-align: center; /* Center text in each column */
+            }
 
-    .last-transactions .d-flex span:last-child {
-        text-align: right; /* Right-align for the amount column */
-    }
+                .last-transactions .d-flex span:last-child {
+                    text-align: right; /* Right-align for the amount column */
+                }
 
     .chart-container {
         width: 100%;
         height: 400px;
+        margin-top: 20px;
     }
 
     .invoice-item {
@@ -61,6 +61,25 @@
         justify-content: space-between;
         padding: 10px 0;
         border-bottom: 1px solid #eee;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f4f4f4;
     }
 </style>
 
@@ -85,7 +104,6 @@
         </form>
     </div>
 </div>
-
 @if (Model.ConvertedValue > 0)
 {
     <div class="card mt-4">
@@ -93,4 +111,35 @@
             <h3>@Model.Amount @Model.FromCurrency = @Model.ConvertedValue @Model.ToCurrency</h3>
         </div>
     </div>
+}
+
+@if (Model.CurrencyData != null && Model.CurrencyData.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Currency Code</th>
+                <th>Currency Name</th>
+                <th>Forex Buying</th>
+                <th>Forex Selling</th>
+                <th>Banknote Buying</th>
+                <th>Banknote Selling</th>
+                <th>Record Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in Model.CurrencyData)
+            {
+                <tr>
+                    <td>@data.CurrencyCode</td>
+                    <td>@data.CurrencyName</td>
+                    <td>@data.ForexBuying</td>
+                    <td>@data.ForexSelling</td>
+                    <td>@data.BanknoteBuying</td>
+                    <td>@data.BanknoteSelling</td>
+                    <td>@data.RecordDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }

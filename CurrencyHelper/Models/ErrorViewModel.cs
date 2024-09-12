@@ -1,4 +1,4 @@
-namespace ApiConsume.Models
+namespace CurrencyHelper.Models
 {
     public class ErrorViewModel
     {

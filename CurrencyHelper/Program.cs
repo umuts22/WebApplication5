@@ -1,7 +1,11 @@
+using CurrencyHelper.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register your services here
+builder.Services.AddScoped<DataRecordService>(); // Register DataRecordService
 
 var app = builder.Build();
 

@@ -1,0 +1,30 @@
+﻿@model List<CurrencyHelper.Models.TcmbExchangeRate>
+
+<h1>TCMB Currency Rates</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Currency Code</th>
+            <th>Currency Name</th>
+            <th>Forex Buying</th>
+            <th>Forex Selling</th>
+            <th>Banknote Buying</th>
+            <th>Banknote Selling</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var currency in Model)
+        {
+            <tr>
+                <td>@currency.CurrencyCode</td>
+                <td>@currency.CurrencyName</td>
+                <td>@currency.ForexBuying</td>
+                <td>@currency.ForexSelling</td>
+                <td>@currency.BanknoteBuying</td>
+                <td>@currency.BanknoteSelling</td>
+                <td>@currency.RecordDate.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+</table>

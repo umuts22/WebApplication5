@@ -1,8 +1,8 @@
-using ApiConsume.Models;
+using CurrencyHelper.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace ApiConsume.Controllers
+namespace CurrencyHelper.Controllers
 {
     public class HomeController : Controller
     {
